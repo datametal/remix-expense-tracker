@@ -21,13 +21,35 @@ module.exports = {
   },
 
   // Base config
-  extends: ["eslint:recommended"],
-
+  extends: ["eslint:recommended", "plugin:prettier/recommended", "prettier"],
+  rules: {
+    "prettier/prettier": ["error", config],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        prefer: "type-imports",
+        disallowTypeAnnotations: true,
+      },
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+  },
   overrides: [
     // React
     {
       files: ["**/*.{js,jsx,ts,tsx}"],
-      plugins: ["react", "jsx-a11y"],
+      plugins: [
+        "react",
+        "@typescript-eslint",
+        "html",
+        "jsx-a11y",
+        "simple-import-sort",
+        "import",
+        "prettier",
+      ],
       extends: [
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
